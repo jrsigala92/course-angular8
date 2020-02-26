@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div>
+                <label for="number">Number</label>
+                <input class="form-control" type="text" name="number" [(ngModel)]="employee.employeeNumber">
+            </div>
+            <div>
+                <label for="name">Name</label>
+                <input class="form-control" type="text" name="name" [(ngModel)]="employee.name">
+            </div>
+            <div>
+                <label for="lastName">Last Name</label>
+                <input class="form-control" type="text" name="lastName" [(ngModel)]="employee.lastName">
+            </div>
+            <button class="btn btn-primary" (click)="onAddEmployee()">Add Employee</button>
+        </div>
+        <div class="col-md-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Last Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of employeeList; let indx = index">
+                        <td>{{e.employeeNumber}}</td>
+                        <td>{{e.name}}</td>
+                        <td>{{e.lastName}}</td>
+                        <td><button class="btn btn-secondary" (click)="onDelete(indx)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
