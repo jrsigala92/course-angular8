@@ -9,10 +9,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class EmployeeListComponent implements OnInit {
   employeeList: Array<Employee>;
-
-  // employeeName: string;
-  // employeeLastName: string;
-  // employeeNumber: number;
   employee: Employee = new Employee();
 
   constructor() { }
