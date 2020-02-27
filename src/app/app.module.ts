@@ -19,8 +19,9 @@ import { UserDetailComponent } from './components/users/user-detail/user-detail.
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { HomeComponent } from './components/home/home.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-// import {ButtonModule} from 'primeng/button';
-// import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -39,15 +40,16 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     UsersComponent,
     UserDetailComponent,
     UserListComponent,
-    HomeComponent
+    HomeComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    // ButtonModule,
-    // TableModule
+    ButtonModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

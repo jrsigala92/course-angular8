@@ -1,77 +1,52 @@
 <div class="ui-g ui-fluid">
-    <div class="ui-g-12 ui-md-8">
-        <div class="ui-g-12 ui-md-4">
+    <div class="ui-md-3">
+        <div class="ui-md-3">
             <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                 <input type="text" [(ngModel)]="product.name" pInputText placeholder="Name">
             </div>
         </div>
 
-        <div class="ui-g-12 ui-md-4">
+        <div class="ui-md-3">
             <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon">$</span>
                 <input type="text" [(ngModel)]="product.price" pInputText placeholder="Price">
             </div>
         </div>
 
-        <div class="ui-g-12 ui-md-3">
+        <div class="ui-md-3">
             <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon">--</span>
                 <input type="text" [(ngModel)]="product.description" pInputText placeholder="Description">
             </div>
         </div>
-        <div class="ui-g-12 ui-md-1">
-            <!-- <p-button label="Click" (click)="onAddProduct()"></p-button> -->
-            <button label="click" (click)="onAddProduct()"></button>
+        <div class="ui-md-3">
+            <button [disabled]="
+                (product.name == null || product.name == '' ||
+                product.price == null || product.price == 0  ||
+                product.description == null || product.description == '')" pButton type="button" label="Add" (click)="onAddProduct()"></button>
         </div>
     </div>
-    <div class="ui-g-12 ui-md-8"></div>
+    <div class="ui-md-9">
+        <p-table [value]="productList">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product let-indx=index>
+                <tr>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.description}}</td>
+                    <td>
+                        <button (click)="onProductRemove(indx)" pButton type="button" class="ui-button-danger" icon="pi pi-times"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>
-
-<!-- <input type="text" name="name" class="form-control" [(ngModel)]="product.name"> -->
-<!-- <input type="number" name="price" class="form-control" [(ngModel)]="product.price"> -->
-<!-- <input type="text" name="description" class="form-control" [(ngModel)]="product.description"> -->
-<!-- <button (click)="onAddProduct()">Add</button> -->
-
-<!-- <p-table [value]="productList">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.description}}</td>
-            <td>
-                <button (click)="onProductRemove(indx)"></button>
-            </td>
-        </tr>
-    </ng-template>
-</p-table> -->
-
-<table class="table">
-
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of productList; let indx = index">
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.description}}</td>
-            <td>
-                <button (click)="onProductRemove(indx)"></button>
-            </td>
-        </tr>
-    </tbody>
-</table>
