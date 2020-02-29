@@ -1,1 +1,17 @@
-<p>employee-detail works!</p>
+<div class="col-md-3">
+    <div>
+        <label for="number">Number</label>
+        <input class="form-control" type="text" name="number" [(ngModel)]="employee.employeeNumber">
+    </div>
+    <div>
+        <label for="name">Name</label>
+        <input class="form-control" type="text" name="name" [(ngModel)]="employee.name">
+    </div>
+    <div>
+        <label for="lastName">Last Name</label>
+        <input class="form-control" type="text" name="lastName" [(ngModel)]="employee.lastName">
+    </div>
+</div>
+
+<button *ngIf="!employeeId" class="btn btn-primary" (click)="onAddEmployee()">Add Employee</button>
+<button *ngIf="employeeId" class="btn btn-primary" (click)="onSaveEmployee()">Save Employee</button>

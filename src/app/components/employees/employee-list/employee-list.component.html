@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <button class="btn btn-primary" [routerLink]="['/employees/employee-detail']" routerLinkActive="router-link-active">Add Employee</button>
+        <!-- <div class="col-md-3">
             <div>
                 <label for="number">Number</label>
                 <input class="form-control" type="text" name="number" [(ngModel)]="employee.employeeNumber">
@@ -14,8 +15,8 @@
                 <input class="form-control" type="text" name="lastName" [(ngModel)]="employee.lastName">
             </div>
             <button class="btn btn-primary" (click)="onAddEmployee()">Add Employee</button>
-        </div>
-        <div class="col-md-9">
+        </div> -->
+        <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
@@ -27,13 +28,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let e of employeeList; let indx = index">
-                        <td>{{e.employeeNumber}}</td>
+                        <td [routerLink]="['/employees/employee-detail/', indx]">{{e.employeeNumber}}</td>
                         <td>{{e.name}}</td>
                         <td>{{e.lastName}}</td>
-                        <td><button class="btn btn-secondary" (click)="onDelete(indx)">Delete</button></td>
+                        <td><button class="btn btn-secondary" (click)="confirm(indx)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

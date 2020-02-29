@@ -22,6 +22,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -45,13 +49,15 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    ConfirmDialogModule
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

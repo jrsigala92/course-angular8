@@ -21,10 +21,10 @@
             </div>
         </div>
         <div class="ui-md-3">
-            <button [disabled]="
-                (product.name == null || product.name == '' ||
-                product.price == null || product.price == 0  ||
-                product.description == null || product.description == '')" pButton type="button" label="Add" (click)="onAddProduct()"></button>
+            <button [disabled]="(
+                !product.name ||
+                !product.price ||
+                !product.description)" pButton type="button" label="Add" (click)="onAddProduct()"></button>
         </div>
     </div>
     <div class="ui-md-9">

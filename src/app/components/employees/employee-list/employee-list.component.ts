@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../../models/employee.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {DataService} from '../../../services/data.service';
+import { Data } from '@angular/router';
+import { ConfirmationService } from 'primeng/api/';
 
 @Component({
   selector: 'app-employee-list',
@@ -8,20 +11,32 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-  employeeList: Array<Employee>;
   employee: Employee = new Employee();
-
-  constructor() { }
+  employeeList: Array<Employee>;
+  constructor(
+    private dataService: DataService,
+    private confirmationService: ConfirmationService
+  ) { }
 
   ngOnInit(): void {
-    this.employeeList = new Array<Employee>();
+    this.onGetEmployees();
   }
 
-  onAddEmployee() {
-    this.employeeList.push(this.employee);
-    this.employee = new Employee();
+  onGetEmployees() {
+    this.employeeList = this.dataService.getEmployees();
   }
+
   onDelete(index: number) {
-    this.employeeList.splice(index, 1);
+    this.dataService.deleteEmployee(index);
+    this.onGetEmployees();
+  }
+
+  confirm(index) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to remove employee?',
+      accept: () => {
+        this.onDelete(index);
+      }
+  });
   }
 }
