@@ -11,7 +11,6 @@ import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 export class EmployeeDetailComponent implements OnInit {
   employee: Employee;
   employeeId: string;
-
   constructor(
     private dataService: DataService,
     private router: Router,

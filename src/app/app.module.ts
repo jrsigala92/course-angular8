@@ -23,8 +23,11 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {LightboxModule} from 'primeng/lightbox';
+import {FileUploadModule} from 'primeng/fileupload';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -55,9 +58,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     NgbModule,
     ButtonModule,
     TableModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    LightboxModule,
+    FileUploadModule
   ],
-  providers: [ConfirmationService],
-  bootstrap: [AppComponent]
+  providers: [ConfirmationService, HttpClientModule, MessageService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

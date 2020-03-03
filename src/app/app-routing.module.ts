@@ -23,6 +23,7 @@ const routes: Routes = [
   ]},
   {path: 'products', component: ProductsComponent,
     children: [
+      {path: 'product-detail/:index', component: ProductDetailComponent},
       {path: 'product-detail', component: ProductDetailComponent},
       {path: 'product-list', component: ProductListComponent}
   ]},
