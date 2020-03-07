@@ -1,0 +1,44 @@
+<div class="container">
+    <form #formLogin="ngForm" (ngSubmit)="formLogin.form.valid && onLogin()" action="">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-danger" *ngIf="error">
+                    {{error}}
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input [ngClass]="{'is-invalid': user.invalid && formLogin.submitted}" type="email" id="user" #user="ngModel" required email name="username" class="form-control" [(ngModel)]="username" (keyup.enter)=onKeyUp($event) (keyup.control.c)=onKeyUp($event) (keyup.control.shift.a)=onKeyUp($event)
+                        (change)="onChange($event)" />
+                </div>
+                <div class="text-danger" *ngIf="formLogin.submitted && user.invalid">
+                    <div *ngIf="user.errors.required">Required</div>
+                    <div *ngIf="user.errors.email">Username must be in a valid format</div>
+                    <!-- <div *ngIf="user.errors.pattern">Username must be letters</div> -->
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input [ngClass]="{'is-invalid': pass.invalid && formLogin.submitted}" #pass="ngModel" type="password" required password name="password" class="form-control" [(ngModel)]="password" />
+                </div>
+                <div class="text-danger" *ngIf="formLogin.submitted && pass.invalid">
+                    <div *ngIf="pass.errors.required">Required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select #select="ngModel" [ngClass]="{'is-invalid': select.invalid && formLogin.submitted}" required (change)="onChange($event)" name="country" class="form-control" [(ngModel)]="country">
+                    <option selected value="">Select a Country</option>
+                    <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>
+                </select>
+
+                    <div class="text-danger" *ngIf="formLogin.submitted && select.invalid">
+                        <div *ngIf="select.errors.required">Required</div>
+                    </div>
+                </div>
+                {{country}}
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>
+</div>

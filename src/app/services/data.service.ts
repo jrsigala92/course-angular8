@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +9,13 @@ import { Employee } from '../models/employee.model';
 export class DataService {
 
   employeeList: Array<Employee> = [];
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
-  getEmployees() {
-    return this.employeeList;
+  getEmployees(): Observable<any> {
+    return this.httpClient.get('https://reqres.in/api/users');
+    // return this.employeeList;
   }
 
   getEmployee(index: string) {

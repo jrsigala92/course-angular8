@@ -1,47 +1,43 @@
-<div class="ui-md-12">
+<div class="ui-g">
     <div class="ui-md-3">
-        <div class="ui-md-3">
-            <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                <input type="text" [(ngModel)]="product.name" pInputText placeholder="Name">
-            </div>
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input type="text" [(ngModel)]="product.name" pInputText placeholder="Name">
         </div>
-
-        <div class="ui-md-3">
-            <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon">$</span>
-                <input type="text" [(ngModel)]="product.price" pInputText placeholder="Price">
-            </div>
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-dollar" style="line-height: 1.25;"></i></span>
+            <input type="text" [(ngModel)]="product.price" pInputText placeholder="Price">
         </div>
-
-        <div class="ui-md-3">
-            <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon">--</span>
-                <input type="text" [(ngModel)]="product.description" pInputText placeholder="Description">
-            </div>
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-tags" style="line-height: 1.25;"></i></span>
+            <input type="text" [(ngModel)]="product.description" pInputText placeholder="Description">
         </div>
-        <div class="ui-md-3">
-            <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon">--</span>
-                <!-- <p-fileUpload name="product.image" url="./assets"></p-fileUpload> -->
-                <!-- <p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload> -->
-            </div>
-        </div>
-        <div *ngIf="!productId" class="ui-md-3">
+        <div *ngIf="!productId">
             <button [disabled]="(
             !product.name ||
             !product.price ||
             !product.description)" pButton type="button" label="Add" (click)="onAddProduct()"></button>
         </div>
 
-        <div *ngIf="productId" class="ui-md-3">
+        <div *ngIf="productId">
             <button [disabled]="(
             !product.name ||
             !product.price ||
             !product.description)" pButton type="button" label="Save" (click)="onSaveProduct()"></button>
         </div>
     </div>
-    <div *ngIf="productId" class="ui-md-9">
-        <p-lightbox [images]="product.image"></p-lightbox>
+    <div class="ui-md-6">
+        <div class="ui-inputgroup">
+            <p-fileUpload name="file[]" url="./upload.php" (onSelect)="onSelect($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="product.uploadedFiles.length">
+                        <li *ngFor="let file of product.uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+        </div>
+    </div>
+    <div class="ui-md-3">
+        <img [src]="product.image">
     </div>
 </div>

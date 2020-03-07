@@ -23,14 +23,16 @@ uploadedFiles: any[] = [];
   ngOnInit(): void {
     this.product = new Product();
     this.productId = this.route.snapshot.paramMap.get('index');
-    console.log(this.product);
     if (this.productId) {
       this.product = this.productService.getProduct(this.productId);
+      console.log(this.product);
     }
   }
 
   onAddProduct() {
+    console.log(this.product);
     this.productService.setProduct(this.product);
+
     this.product = new Product();
     this.router.navigateByUrl('products/product-list');
     // this.onGetProducts();
@@ -42,14 +44,11 @@ uploadedFiles: any[] = [];
     this.router.navigateByUrl('products/product-list');
   }
 
-//   onUpload(event) {
-//     for(let file of event.files) {
-//         this.uploadedFiles.push(file);
-//     }
+  onSelect(event) {
+    for(let file of event.files) {
+        this.product.uploadedFiles.push(file);
+    }
 
-//     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-// }
-onBasicUpload(event) {
-  this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode'});
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
 }

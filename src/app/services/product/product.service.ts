@@ -16,15 +16,15 @@ export class ProductService {
   getProduct(index: string) {
     return this.productList[index];
   }
-  setProduct(employee: Product) {
+  setProduct(product: Product) {
     if (!this.productList) {
       this.productList = [];
     }
-    this.productList.push(employee);
+    this.productList.push(product);
   }
 
-  updateProduct(index, employee: Product) {
-    this.productList[index] = employee;
+  updateProduct(index, product: Product) {
+    this.productList[index] = product;
   }
 
   deleteProduct(index: number) {

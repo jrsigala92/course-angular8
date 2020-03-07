@@ -13,6 +13,7 @@ import { ConfirmationService } from 'primeng/api/';
 export class EmployeeListComponent implements OnInit {
   employee: Employee = new Employee();
   employeeList: Array<Employee>;
+  users: Array<any>;
   constructor(
     private dataService: DataService,
     private confirmationService: ConfirmationService
@@ -23,7 +24,10 @@ export class EmployeeListComponent implements OnInit {
   }
 
   onGetEmployees() {
-    this.employeeList = this.dataService.getEmployees();
+    // this.employeeList = this.dataService.getEmployees();
+    this.dataService.getEmployees().subscribe(res =>
+      this.users = res.data);
+
   }
 
   onDelete(index: number) {

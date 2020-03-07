@@ -1,17 +1,20 @@
+import { Image } from './image-model';
 export class Product {
     name: string;
     description: string;
     price: number;
-    image: any[];
+    image: string;
+    file: [];
+    uploadedFiles: Image[];
     url: string;
 
 
-    constructor(name?: string, description?: string, price?: number, image?: string, url?: string) {
+    constructor(name?: string, description?: string, price?: number, image?: string, url?: string, uploadedFiles?) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.image = [];
-        this.image.push({source: '/assets/images/image1.jpg', title: 'no lo se, tu dime', thumbnail: '/assets/images/image1.jpg'}) ;
+        this.image = image;
+        this.uploadedFiles = uploadedFiles ? uploadedFiles : [];
         this.url = './assets';
     }
 }
